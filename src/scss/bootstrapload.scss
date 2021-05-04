@@ -1,0 +1,7 @@
+@import "~bootstrap/scss/bootstrap.scss";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+@mixin slim-el {
+  @include m-0;
+  @include p-0;
+}
