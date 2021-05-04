@@ -57,6 +57,10 @@ module.exports = {
             {
                 test:/\.(svg)$/,
                 type: 'asset/resource'
+            },
+            {
+                test:/\.(pdf)$/,
+                type: 'asset/resource'
             }
         ]
     },
