@@ -21,10 +21,6 @@ function getPdfNames() {
   );
 }
 
-function loadPDF(pdf) {
-  return(import('./assets/pdf/' + pdf))
-}
-
 //Gets all the pdf names
 let pdfList = getPdfNames();
 
