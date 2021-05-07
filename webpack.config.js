@@ -1,16 +1,19 @@
 const path = require('path');
-const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-    entry: './src/index.js',
+    entry: [
+        "core-js/modules/es.promise",
+        "core-js/modules/es.array.iterator",
+        path.resolve(__dirname, 'src/index.js')
+    ],
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
         chunkFilename: '[id].js',
         publicPath: '',
-        assetModuleFilename: 'asset/[name][ext][query]'
+        assetModuleFilename: 'assets/[name][ext][query]'
     },
     devServer: {
         writeToDisk: true,
@@ -32,15 +35,16 @@ module.exports = {
                 use: [
                     { loader: 'style-loader'}, 
                     { loader: 'css-loader' }, 
-                    {
-                        loader: 'postcss-loader',
+                    { loader: 'postcss-loader',
                         options: {
                             postcssOptions: {
-                                plugins: function () {
-                                    return [
-                                    require('autoprefixer')
-                                    ];
-                                }
+                                plugins: [
+                                    [
+                                        "postcss-preset-env", {
+                                            //Options
+                                        }
+                                    ]
+                                ]
                             }
                         }
                     }, 
