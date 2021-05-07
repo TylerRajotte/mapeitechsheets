@@ -9,8 +9,6 @@ import ResultView from './resultview.js'
 //TODO
 // Look into pdf.js to load the pdf directly in the web view
 // SHOULD LOAD THE FILE ONCE YOU ACTUALLY SEARCH FOR THE ITEM in the meantime should just grab the filenames and only use them
-// Also move all this functionality to app.js and then just pass props back and forth becuase the main functionality 
-// probably shouldn't be in this file
 
 // Uses require context to get a list of all the pdf names in ./assets/pdf/
 function getPdfNames() {
@@ -22,7 +20,7 @@ function getPdfNames() {
 }
 
 //Gets all the pdf names
-let pdfList = getPdfNames();
+const pdfList = getPdfNames();
 
 export function App() {
   const [searchTerm, setSearchTerm] = React.useState('');
