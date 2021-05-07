@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Document } from 'react-pdf/dist/esm/entry.webpack';
 
 function Result(props){
+  //PDF is loaded into a react state
   const [loadedPDF, setLoadedPDF] = React.useState(null);
 
   useEffect(() => {
@@ -14,9 +15,14 @@ function Result(props){
 
   return(
     <div className="card mt-1 mb-1 ms-3 me-3">
-      <div className="card-body bg-light">
-        <h6 className="card-title">{props.result + ".pdf"}</h6>
-        <Document file={loadedPDF} />
+      <div className="row g-0 card-body bg-light p-2">
+        <span className="card-title col-11 m-0">{props.result + ".pdf"}</span>
+        {/* <Document file={loadedPDF} /> */}
+        <div className="col-1 d-flex justify-content-end">
+          <button className="btn btn-primary">
+            <i className="bi bi-chevron-down"></i>
+          </button>
+        </div>
       </div>
     </div>
   )
