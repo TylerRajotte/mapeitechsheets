@@ -1,10 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import './scss/bootstrapload.scss';
 
-import TitleBar from './titlebar'
-import SearchBar from './searchbar.js'
-import ResultView from './resultview.js'
+import TitleBar from './titlebar';
+import SearchBar from './searchbar.js';
+import ResultView from './resultview.js';
+import ErrorBoundary from './errorboundry.js';
 
 //TODO
 // Look into pdf.js to load the pdf directly in the web view
@@ -49,9 +49,15 @@ export function App() {
 
   return (
     <div className="d-flex flex-column">
-      <TitleBar />
-      <SearchBar term={searchTerm} termChange={onSearchChange}/>
-      <ResultView results={results}/>
+      <ErrorBoundary>
+        <TitleBar />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <SearchBar term={searchTerm} termChange={onSearchChange}/>
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <ResultView results={results}/>
+      </ErrorBoundary>
     </div>
   );
 };
