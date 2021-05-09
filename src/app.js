@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './scss/bootstrapload.scss';
 
 import TitleBar from './titlebar';
@@ -27,11 +27,16 @@ export function App() {
   const [results, setResults] = React.useState([]);
   
   function onSearchChange(event) {
-    setSearchTerm(event.target.value);
+    let term;
+    if(event === null){
+      term = [""];
+    } else {
+      setSearchTerm(event.target.value);
 
-    // Gets rid of all white space and replaces it with ?|? then splits it on ?|?
-    const term = event.target.value.replace(/\s+/g, '?|?').split("?|?");
-
+      // Gets rid of all white space and replaces it with ?|? then splits it on ?|?
+      term = event.target.value.replace(/\s+/g, '?|?').split("?|?");
+    }
+    
     // Capitalize and replace & signs
     for(let i = 0; i < term.length; i++){
       if(term[i] === "&"){
@@ -46,6 +51,11 @@ export function App() {
     const results = pdfList.filter(search => search.includes(term.join("")));
     setResults(results);
   }
+
+  React.useEffect(() => {
+    // Init with a special value to generate a clear search with everything
+    onSearchChange(null)
+  }, []);
 
   return (
     <div className="d-flex flex-column">
