@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const WebpackFavicons = require('webpack-favicons');
 
 module.exports = {
     entry: [
@@ -76,6 +77,9 @@ module.exports = {
         }),
         new BundleAnalyzerPlugin({
             openAnalyzer: false
+        }),
+        new WebpackFavicons({
+            src: './src/assets/favicon.svg'
         })
     ]
 };

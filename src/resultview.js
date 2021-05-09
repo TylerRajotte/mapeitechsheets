@@ -15,6 +15,7 @@ function Result(props){
     })
   });
 
+  // Gives the functionality of swaping between expanded and not expanded and changes out the icons
   function expand() {
     if(!expanded){
       setExpanded(true);
@@ -27,15 +28,17 @@ function Result(props){
   return(
     <div className="card mt-1 mb-1 ms-3 me-3">
       <div className="row g-0 card-body bg-light p-2">
-        <span className="card-title col-2 m-0">{props.result}</span>
-        <a href={loadedPDF} className="card-link col-8">{props.result + ".pdf"}</a>
-        <div className="col-2 d-flex justify-content-end">
-          <button className="btn btn-primary" onClick={expand}>
+        <span className="card-title col-6 m-0 d-flex align-items-center overflow-hidden p-1">{props.result}</span>
+        <div className="col-6 d-flex justify-content-end">
+          <a href={loadedPDF} className="card-link d-flex align-items-center overflow-hidden p-1">{props.result + ".pdf"}</a>
+          <button className="ms-3 btn btn-primary btn-small" onClick={expand}>
             <i className={"bi " + icon}></i>
           </button>
         </div>
         {expanded && ( // Only show if the state allows it
-          <DocumentViewer file={loadedPDF}/>
+          <ErrorBoundary>
+            <DocumentViewer file={loadedPDF}/>
+          </ErrorBoundary>
         )}
     </div>
     </div>
