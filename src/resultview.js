@@ -1,6 +1,7 @@
 import React from "react";
 import DocumentViewer from "./documentviewer.js";
 import ErrorBoundary from './errorboundry.js';
+import PrintButton from './printbutton.js'
 
 function Result(props){
   //PDF is loaded into a react state
@@ -31,13 +32,16 @@ function Result(props){
         <span className="card-title col-6 m-0 d-flex align-items-center overflow-hidden p-1">{props.result}</span>
         <div className="col-6 d-flex justify-content-end">
           <a href={loadedPDF} className="card-link d-flex align-items-center overflow-hidden p-1">{props.result + ".pdf"}</a>
-          <button className="ms-3 btn btn-primary btn-small" onClick={expand}>
+          <ErrorBoundary>
+            <PrintButton file={loadedPDF} />
+          </ErrorBoundary>
+          <button className="ms-1 btn btn-primary btn-small" onClick={expand}>
             <i className={"bi " + icon}></i>
           </button>
         </div>
         {expanded && ( // Only show if the state allows it
           <ErrorBoundary>
-            <DocumentViewer file={loadedPDF}/>
+            <DocumentViewer file={loadedPDF} showControls={true} pageStart={1} scale={0.75}/>
           </ErrorBoundary>
         )}
     </div>

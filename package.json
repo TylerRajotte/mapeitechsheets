@@ -25,6 +25,7 @@
     "postcss": "^8.2.12",
     "postcss-loader": "^5.2.0",
     "postcss-preset-env": "^6.7.0",
+    "react-to-print": "^2.12.4",
     "sass": "^1.32.11",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
