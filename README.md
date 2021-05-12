@@ -5,4 +5,4 @@ Can build the site with
 ``npm run build``
 
 Can start the dev mode server with
-``npm start
+``npm start``
