@@ -41,7 +41,7 @@ function Result(props){
         </div>
         {expanded && ( // Only show if the state allows it
           <ErrorBoundary>
-            <DocumentViewer file={loadedPDF} showControls={true} pageStart={1} scale={0.75}/>
+            <DocumentViewer file={loadedPDF} showControls={true} pageStart={1} startScale={0.75}/>
           </ErrorBoundary>
         )}
     </div>

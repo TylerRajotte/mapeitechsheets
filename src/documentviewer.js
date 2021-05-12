@@ -1,10 +1,10 @@
 import React from 'react';
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
 
-export function DocumentViewer(props){
+export function DocumentViewer(file, pageStart, startScale, showControls){
   const [numPages, setNumPages] = React.useState(null);
-  const [pageNumber, setPageNumber] = React.useState(props.pageStart);
-  const [scale, setScale] = React.useState(props.scale);
+  const [pageNumber, setPageNumber] = React.useState(pageStart);
+  const [scale, setScale] = React.useState(startScale);
   const [width, setWidth] = React.useState(0);
   const [centered, setCentered] = React.useState(true);
   const documentContainer = React.useRef(null);
@@ -24,7 +24,7 @@ export function DocumentViewer(props){
   // Basic Setup for the document
   function onDocumentLoadSuccess({numPages}){
     setNumPages(numPages);
-    setPageNumber(props.pageStart);
+    setPageNumber(pageStart);
   }
 
   // Controls for all the buttons
@@ -58,7 +58,7 @@ export function DocumentViewer(props){
 
   return(
     <div className="d-flex flex-column">
-      { props.showControls &&
+      { showControls &&
       <div className="d-flex justify-content-center mb-2">
         <button className="btn btn-secondary btn-small" onClick={zoomOut}>
             <i className={"bi bi-zoom-out"}></i>
@@ -77,7 +77,7 @@ export function DocumentViewer(props){
       }
       {/* Follow up on the auto justifying system */}
       <div className={"d-flex overflow-scroll w-100 h-100 " + (centered ? "justify-content-center" : "")} ref={documentContainer}>
-        <Document file={props.file} onLoadSuccess={onDocumentLoadSuccess}>
+        <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} scale={scale} width={width}/>
         </Document>
       </div>

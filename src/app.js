@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import './scss/bootstrapload.scss';
 
 import TitleBar from './titlebar';
@@ -53,7 +53,7 @@ export function App() {
   }
 
   React.useEffect(() => {
-    // Init with a special value to generate a clear search with everything
+    // Init with a special value to generate a clear search with everything 
     onSearchChange(null)
   }, []);
 
@@ -70,6 +70,6 @@ export function App() {
       </ErrorBoundary>
     </div>
   );
-};
+}
 
 export default App;
